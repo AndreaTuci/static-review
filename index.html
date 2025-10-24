@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lettore Rassegna Stampa</title>
-    <meta name="csrf-token" content="kDoOv7W1zNmAUN3wLzkcSkEzQFQ8JqhOZ8yFUONBtyIJ98xPpjLmZ3SYTw0qyZIz">
-    <input type="hidden" name="csrfmiddlewaretoken" value="kDoOv7W1zNmAUN3wLzkcSkEzQFQ8JqhOZ8yFUONBtyIJ98xPpjLmZ3SYTw0qyZIz">
+    <meta name="csrf-token" content="I0Lgp2cVwu6vCzkWelBoHHuN7IdLTfwoPnaVIB8xzAVdOMfoATleLPVgT2VYRQCS">
+    <input type="hidden" name="csrfmiddlewaretoken" value="I0Lgp2cVwu6vCzkWelBoHHuN7IdLTfwoPnaVIB8xzAVdOMfoATleLPVgT2VYRQCS">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -365,7 +365,7 @@
     </div>
     
     <!-- Calendario -->
-    <div class="calendar">
+    <div class="calendar hide">
         <div class="calendar-header">
             📅 October 2025
         </div>
@@ -1441,15 +1441,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             new PressReviewReader();
             new RatingSystem();
-
-                // Nascondi il calendario se il query param generate_static=True
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('generate_static') === 'true') {
-                    const calendarBlock = document.querySelector('.calendar');
-                    if (calendarBlock) {
-                        calendarBlock.classList.add('hide');
-                    }
-                }
         });
     </script>
 </body>
