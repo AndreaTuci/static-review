@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lettore Rassegna Stampa</title>
-    <meta name="csrf-token" content="I0Lgp2cVwu6vCzkWelBoHHuN7IdLTfwoPnaVIB8xzAVdOMfoATleLPVgT2VYRQCS">
-    <input type="hidden" name="csrfmiddlewaretoken" value="I0Lgp2cVwu6vCzkWelBoHHuN7IdLTfwoPnaVIB8xzAVdOMfoATleLPVgT2VYRQCS">
+    <meta name="csrf-token" content="PttG2BOKp0PkrqPWGII8GxuEFtgAyVVtsiwiiY8Xl3iFNyA1BKeh6JyrQBREKPaT">
+    <input type="hidden" name="csrfmiddlewaretoken" value="PttG2BOKp0PkrqPWGII8GxuEFtgAyVVtsiwiiY8Xl3iFNyA1BKeh6JyrQBREKPaT">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -725,7 +725,10 @@
     <div class="review-info">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h2>📰 Rassegna del 24 Ottobre 2025</h2>
-            <a href="/admin/" class="btn" style="text-decoration: none;">⚙️ Admin</a>
+            <div>
+                <a href="/admin/" class="btn" style="text-decoration: none;">⚙️ Admin</a>
+                
+            </div>
         </div>
         
         <!-- Statistiche principali -->
@@ -1441,6 +1444,39 @@
         document.addEventListener('DOMContentLoaded', () => {
             new PressReviewReader();
             new RatingSystem();
+
+            // Pulsante per generazione statica (solo superadmin)
+            const generateBtn = document.getElementById('generateStaticBtn');
+            if (generateBtn) {
+                generateBtn.addEventListener('click', function() {
+                    generateBtn.disabled = true;
+                    generateBtn.textContent = '⏳ Generazione in corso...';
+                    fetch('/tts/api/generate_static/', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            generateBtn.textContent = '✅ Statico generato';
+                            generateBtn.classList.remove('danger');
+                            generateBtn.classList.add('success');
+                        } else {
+                            generateBtn.textContent = '❌ Errore';
+                            generateBtn.disabled = false;
+                            alert(data.error || 'Errore generazione statico');
+                        }
+                    })
+                    .catch(err => {
+                        generateBtn.textContent = '❌ Errore';
+                        generateBtn.disabled = false;
+                        alert('Errore generazione statico');
+                    });
+                });
+            }
         });
     </script>
 </body>
