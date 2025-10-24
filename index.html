@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lettore Rassegna Stampa</title>
-    <meta name="csrf-token" content="U9B9so4lv01c8kjT0bcerAEBB2iTfj5TYaZXNiX33WKHwiE8jVAi3OEkYCTfI6aZ">
-    <input type="hidden" name="csrfmiddlewaretoken" value="U9B9so4lv01c8kjT0bcerAEBB2iTfj5TYaZXNiX33WKHwiE8jVAi3OEkYCTfI6aZ">
+    <meta name="csrf-token" content="8jlBsraOZh64ZOhFtf3hhWWR7ULO6dyyz6MkoM038y45N8U5CFsfCJjtXKbc2mx0">
+    <input type="hidden" name="csrfmiddlewaretoken" value="8jlBsraOZh64ZOhFtf3hhWWR7ULO6dyyz6MkoM038y45N8U5CFsfCJjtXKbc2mx0">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -360,8 +360,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>🎤 Lettore Rassegna Stampa</h1>
-        <p>Sintesi vocale tramite browser - Qualità superiore</p>
+        <h1>🎤 NewsRooom</h1>
     </div>
     
     <!-- Calendario -->
@@ -726,7 +725,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h2>📰 Rassegna del 24 Ottobre 2025</h2>
             <div>
-                <a href="/admin/" class="btn" style="text-decoration: none;">⚙️ Admin</a>
+                <a href="/admin/" class="btn  hide" style="text-decoration: none;">⚙️ Admin</a>
                 
             </div>
         </div>
@@ -758,7 +757,7 @@
         
         
         <!-- Sistema di Rating -->
-        <div class="rating-section" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ecf0f1;">
+        <div class="rating-section  hide" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #ecf0f1;">
             <h4 style="margin-bottom: 10px;">⭐ Valuta questa rassegna</h4>
             <div class="rating-display">
                 
@@ -1450,7 +1449,7 @@
             if (generateBtn) {
                 generateBtn.addEventListener('click', function() {
                     generateBtn.disabled = true;
-                    generateBtn.textContent = '⏳ Generazione in corso...';
+                    generateBtn.textContent = '⏳ Generazione..';
                     fetch('/tts/api/generate_static/', {
                         method: 'POST',
                         headers: {
